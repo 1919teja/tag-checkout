@@ -1,24 +1,30 @@
-try {
-  node ('master'){
-  
-  node ('master'){
-    
-    notifyBuild("STARTED")
-    stage('Git checkout job configuration'){
+pipeline {
+    agent any
 
-    checkout scm
+    stages {
+        stage('Git Checkout Job Configuration') {
+            steps {
+                script {
+                    notifyBuild("STARTED")
+                    checkout scm
+                    buildName "${env.tag} - ${env.BUILD_NUMBER}"
+                }
+            }
+        }
 
-    buildName  "${env.tag} - ${env.BUILD_NUMBER}"
-
+        stage('Code Checkout on Build Path') {
+            steps {
+                script {
+                    dir('./ansible/playbooks/') {
+                        sh "ansible-playbook -i ./inventories/hosts -t git_checkout ./checkout_tag.yml -e 'git_version=${env.tag}' -vv"
+                    }
+                }
+            }
+        }
     }
+}
 
-  dir ('./ansible/playbooks/'){
-
-
-    stage('Code checkout on build path'){
-      sh "ansible-playbook -i ./inventories/hosts -t git_checkout ./checkout_tag.yml -e 'git_version=$env.tag' -vv"
-    }
-
-  }
-  }
+def notifyBuild(String buildStatus) {
+    // Implement your notification logic here
+    echo "Build Status: ${buildStatus}"
 }
