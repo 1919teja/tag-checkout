@@ -1,5 +1,5 @@
-pipeline {
-    agent any {
+try {
+  node ('master'){
   
   node ('master'){
     
