@@ -1,7 +1,7 @@
 try {
-  node ('master'){
+ 
 
-  node ('master'){
+  node ('built-in node'){
 
     notifyBuild("STARTED")
     stage('Git checkout job configuration'){
