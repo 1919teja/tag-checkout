@@ -1,4 +1,4 @@
 git_repo: git@github.com:1919teja/ML-webapp-dashboards.git
-git_root_dir_build: /Users/kottapallysaiteja/Autmation/ML-webapp-dashboards
-git_tmp: /Users/kottapallysaiteja/Autmation/tmp
-git_key_path: /Users/kottapallysaiteja/.ssh/git.rsa
+git_root_dir_build: /home/ec2-user/automation/ML-webapp-dashboards
+git_tmp: /home/ec2-user/automation/tmp
+git_key_path: /home/ec2-user/.ssh/git.rsa
