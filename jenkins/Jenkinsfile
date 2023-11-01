@@ -1,4 +1,6 @@
-try {
+pipeline {
+    agent any
+  
   node ('master'){
     
     notifyBuild("STARTED")
