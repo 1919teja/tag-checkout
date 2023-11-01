@@ -22,7 +22,7 @@ try {
       }
   }
 }
-}
+
 catch(err){
    currentBuild.result = "FAILED"
    notifyBuild(currentBuild.result, "red")
