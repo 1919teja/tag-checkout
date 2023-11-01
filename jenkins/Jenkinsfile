@@ -1,0 +1,22 @@
+try {
+  node ('master'){
+    
+    notifyBuild("STARTED")
+    stage('Git checkout job configuration'){
+
+    checkout scm
+
+    buildName  "${env.tag} - ${env.BUILD_NUMBER}"
+
+    }
+
+  dir ('./ansible/playbooks/'){
+
+
+    stage('Code checkout on build path'){
+      sh "ansible-playbook -i ./inventories/hosts -t git_checkout ./checkout_tag.yml -e 'git_version=$env.tag' -vv"
+    }
+
+  }
+  }
+}
